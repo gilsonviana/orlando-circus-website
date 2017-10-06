@@ -1,0 +1,348 @@
+/*
+	Theme Name: VianaWebDev
+	Theme URI: http://codepen.io/gilsonviana
+	Description: VianaWebDev - Orlando Circus School
+	Version: 1.0.0
+	Author: Gilson Viana (vianawebdev@gmail.com)
+	Author URI: http://github.com/gilsonviana
+	Tags: HTML5, CSS3, SASS, JAVASCRIPT
+
+	License: MIT
+	License URI: http://opensource.org/licenses/mit-license.php
+*/
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em; }
+
+/**
+ * @Variables
+ */
+/**
+ * @Mixin Main Header Lines 
+ * @Component Main Header
+ */
+/*===================*\
+@page header
+@component video
+@component hamburger
+@component main-header
+/*===================*/
+video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  transition: 1s opacity; }
+
+.hamburger {
+  position: absolute;
+  top: 0; }
+  .hamburger .menu {
+    transition: 0.1s transform linear;
+    position: fixed;
+    background: 0;
+    float: left;
+    margin: 2rem;
+    height: 2.7vmax;
+    min-width: 3vmax;
+    z-index: 9999;
+    outline: 0;
+    padding: 0;
+    border: 0; }
+  .hamburger .bar, .hamburger .bar::before, .hamburger .bar::after {
+    transition: 0.2s background linear 0.1s, 0.2s top linear 0.2s, 0.2s transform linear;
+    position: absolute;
+    background: #000;
+    margin: auto;
+    width: 100%;
+    height: 0.3rem;
+    content: '';
+    top: 50%;
+    left: 0; }
+  .hamburger .bar {
+    margin-top: -0.2rem; }
+  .hamburger .bar::before {
+    top: -1.2rem; }
+  .hamburger .bar::after {
+    top: 1.2rem; }
+  .hamburger .bar::before, .hamburger .bar::after {
+    transform: rotate(0deg); }
+  .active .hamburger .bar {
+    background: 0; }
+    .active .hamburger .bar::before {
+      transform: rotate(45deg); }
+    .active .hamburger .bar::after {
+      transform: rotate(-45deg); }
+    .active .hamburger .bar::before, .active .hamburger .bar::after {
+      top: 0; }
+    .active .hamburger .bar, .active .hamburger .bar::before, .active .hamburger .bar::after {
+      transition: 0.2s background linear 0.1s, 0.2s top linear, 0.2s transform linear 0.2s; }
+  .hamburger nav {
+    width: 250px;
+    height: 100%;
+    background: #eaeaea;
+    position: fixed;
+    transform: translateX(-250px);
+    transition: transform 0.6s cubic-bezier(0.56, 0.1, 0.34, 0.91);
+    padding-top: 6.2rem;
+    z-index: 9998; }
+    .menu-open .hamburger nav {
+      transform: translateX(0); }
+    .hamburger nav a {
+      display: block;
+      padding: 20px 5px;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: #444; }
+      .hamburger nav a:hover {
+        background: #444;
+        color: #ddd; }
+
+.main-header {
+  margin-top: 3rem;
+  text-align: center;
+  text-transform: uppercase; }
+  .main-header h5:before {
+    content: "";
+    margin: 0 .5em;
+    display: inline-block;
+    width: 10vw;
+    height: 2px;
+    background: #444;
+    vertical-align: middle; }
+  .main-header h5:after {
+    content: "";
+    margin: 0 .5em;
+    display: inline-block;
+    width: 10vw;
+    height: 2px;
+    background: #444;
+    vertical-align: middle; }
+  .main-header h1 {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 5vmax;
+    letter-spacing: .45em; }
+  .main-header small {
+    display: inline-block;
+    padding: .5em;
+    font-family: serif;
+    font-weight: 300;
+    font-size: .8vmax;
+    border-radius: .3em;
+    background: #444;
+    color: #bbb; }
+  .main-header h5:nth-child(1) {
+    font-weight: 400;
+    font-size: 1.4rem; }
+  .main-header h5:nth-child(4) {
+    font-weight: 300;
+    font-size: 1rem; }
+
+/*===================*\
+@page classes
+@component class-modality
+/*===================*/
+.page-classes {
+  margin-top: 3em;
+  text-align: center; }
+  .page-classes .class-modality {
+    display: block;
+    margin: .5em 0;
+    background: #444;
+    color: #ddd;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    height: 400px;
+    min-width: 100%; }
+    .page-classes .class-modality:before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%; }
+    .page-classes .class-modality .class-title {
+      display: inline-block;
+      vertical-align: middle; }
+    .page-classes .class-modality .class-details {
+      position: absolute;
+      top: -100%;
+      left: 0%;
+      margin: 0;
+      padding: 0;
+      transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+      height: inherit;
+      width: 100%;
+      background: #ddd;
+      text-shadow: 1px 1px rgba(100, 100, 100, 0.3);
+      opacity: 0;
+      color: #444;
+      font-size: 1rem; }
+      .page-classes .class-modality .class-details p {
+        padding: 1%;
+        padding-bottom: 0;
+        text-align: left; }
+    .page-classes .class-modality:hover .class-details {
+      top: 0%;
+      opacity: 1; }
+
+/*===================*\
+@page events
+@component card-event
+/*===================*/
+.page-events {
+  margin-top: 3em; }
+  .page-events .card-event {
+    margin: .5em 0;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+    .page-events .card-event .size-card-thumbnail {
+      width: 100%;
+      height: auto; }
+    .page-events .card-event .card-title {
+      text-align: center;
+      padding: 10px 20px; }
+    .page-events .card-event .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(100, 100, 100, 0.9);
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      transition: .5s ease; }
+      .page-events .card-event .card-overlay .card-overlay-text {
+        white-space: nowrap;
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%); }
+        .page-events .card-event .card-overlay .card-overlay-text a {
+          padding: 5px;
+          background: #5cb85c;
+          border: 1px solid transparent;
+          border-color: #5cb85c;
+          border-radius: .25rem;
+          color: #ddd;
+          font-size: 1.5rem; }
+          .page-events .card-event .card-overlay .card-overlay-text a:hover {
+            text-decoration: none; }
+    .page-events .card-event:hover .card-overlay {
+      height: 100%; }
+
+/*===================*\
+@page schedule
+@component schedule-board
+/*===================*/
+.page-schedule {
+  margin-top: 3em; }
+
+.schedule-board {
+  width: 100%;
+  font-size: 1rem; }
+  .schedule-board .day-week {
+    float: left;
+    width: calc(13.88889%);
+    border-right: 1px solid #fff; }
+    @media (max-width: 575px) {
+      .schedule-board .day-week {
+        width: 100%; } }
+    @media (min-width: 575px) and (max-width: 767px) {
+      .schedule-board .day-week {
+        width: calc(33.33333%); } }
+    @media (min-width: 767px) and (max-width: 991px) {
+      .schedule-board .day-week {
+        width: calc(50%); } }
+    .schedule-board .day-week:last-of-type {
+      border: none; }
+    .schedule-board .day-week .day-name {
+      display: block;
+      text-align: center;
+      background: #444;
+      color: #ddd;
+      font-weight: 700; }
+    .schedule-board .day-week .day-schedule {
+      padding: 0;
+      list-style: none; }
+      .schedule-board .day-week .day-schedule .schedule-item {
+        background: #ddd;
+        padding: .5rem 1rem;
+        border-top: 1px solid #fff; }
+
+/*===================*\
+@page book-classes
+@component book-card
+/*===================*/
+.page-book-classes {
+  margin-top: 3em; }
+  .page-book-classes .book-card {
+    margin: .5em 0;
+    position: relative;
+    width: 100%;
+    background-color: #444;
+    color: #ddd;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+    .page-book-classes .book-card .card-title {
+      text-align: center;
+      padding: 10px 20px; }
+    .page-book-classes .book-card .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(100, 100, 100, 0.9);
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      transition: .5s ease; }
+      .page-book-classes .book-card .card-overlay .card-overlay-text {
+        white-space: nowrap;
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%); }
+        .page-book-classes .book-card .card-overlay .card-overlay-text a {
+          padding: 5px;
+          background: #5cb85c;
+          border: 1px solid transparent;
+          border-color: #5cb85c;
+          border-radius: .25rem;
+          color: #fff;
+          font-size: 1.5rem; }
+          .page-book-classes .book-card .card-overlay .card-overlay-text a:hover {
+            text-decoration: none; }
+    .page-book-classes .book-card:hover .card-overlay {
+      height: 100%; }
+
+/*===================*\
+@page contact
+@component contact-form
+/*===================*/
+.contact-form {
+  padding: 5em .5em;
+  background: #ddd;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+  .contact-form .hide-alert {
+    display: none;
+    opactity: 0;
+    transition: all 1s ease-in; }
+
+/*# sourceMappingURL=style.css.map */

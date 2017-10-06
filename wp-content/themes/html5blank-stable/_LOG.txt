@@ -1,0 +1,46 @@
+Summary
+1.0 Architecture Rules
+    1.1 Default skeleton
+        1.1.1 Page
+2.0 Fixes
+    2.1 CSS
+    
+_________________________
+
+#########################
+1.0 Architecture Rules
+
+1.1 Default skeleton
+
+1.1.1 Main Pages
+
+/page{slug}.php
+
+.container-fluid
+    .container
+        .page-{slug}
+            .row
+                .col
+
+_________________________
+
+#########################
+2.0 Fixes
+
+2.1 CSS
+
+- Set CSS rule to <section> tag under pages creating a DEFAULT class for
+margin and padding;
+
+- Change font-size for responsiveness;
+
+- Under prices page, fix the cards size and index position;
+
+- Apply bootstrap-grid css;
+
+2.2 WORDPRESS
+
+- Configure thumbnails for events page;
+
+_________________________
+

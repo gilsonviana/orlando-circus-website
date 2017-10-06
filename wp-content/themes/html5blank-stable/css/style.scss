@@ -1,0 +1,471 @@
+/*
+	Theme Name: VianaWebDev
+	Theme URI: http://codepen.io/gilsonviana
+	Description: VianaWebDev - Orlando Circus School
+	Version: 1.0.0
+	Author: Gilson Viana (vianawebdev@gmail.com)
+	Author URI: http://github.com/gilsonviana
+	Tags: HTML5, CSS3, SASS, JAVASCRIPT
+
+	License: MIT
+	License URI: http://opensource.org/licenses/mit-license.php
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+}
+
+/**
+ * @Variables
+ */
+$schedule-board-width: 100%;
+$breakpoint-xs: 575px;
+$breakpoint-sm: 767px;
+$breakpoint-md: 991px;
+
+/**
+ * @Mixin Main Header Lines 
+ * @Component Main Header
+ */
+@mixin main-header-lines {
+  &:before {
+    content: "";
+    margin: 0 .5em;
+    display: inline-block;
+    width: 10vw;
+    height: 2px;
+    background: #444;
+    vertical-align: middle;
+  }
+  &:after {
+    content: "";
+    margin: 0 .5em;
+    display: inline-block;
+    width: 10vw;
+    height: 2px;
+    background: #444;
+    vertical-align: middle;
+  }
+}
+
+/*===================*\
+@page header
+@component video
+@component hamburger
+@component main-header
+/*===================*/
+video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  transition: 1s opacity;
+}
+
+.hamburger {
+  position: absolute;
+  top: 0;
+  .menu {
+    transition: 0.1s transform linear;
+    position: fixed;
+    background: 0;
+    float: left;
+    margin: 2rem;
+    height: 2.7vmax;
+    min-width: 3vmax;
+    z-index: 9999;
+    outline: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .bar {
+    &, &::before, &::after {
+      transition: 0.2s background linear 0.1s,
+        0.2s top linear 0.2s,
+        0.2s transform linear;
+      position: absolute;
+      background: #000;
+      margin: auto;
+      width: 100%;
+      height: 0.3rem;
+      content: '';
+      top: 50%;
+      left: 0;
+    }
+
+    & {
+      margin-top: -0.2rem;
+    }
+
+    &::before {
+      top: -1.2rem;
+    }
+
+    &::after {
+      top: 1.2rem;
+    }
+
+    &::before, &::after {
+      transform: rotate(0deg);
+    }
+
+    .active & {
+      background: 0;
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+
+      &::before, &::after {
+        top: 0;
+      }
+
+      &, &::before, &::after {
+        transition: 0.2s background linear 0.1s,
+          0.2s top linear,
+          0.2s transform linear 0.2s;
+      }
+    }
+  }
+
+  nav {
+    width: 250px;
+    height: 100%;
+    background: #eaeaea;
+    position: fixed;
+    transform: translateX(-250px);
+    transition: transform 0.6s cubic-bezier(.56, .1, .34, .91);
+    padding-top: 6.2rem;
+    z-index: 9998;
+    
+    .menu-open & {
+      transform: translateX(0);
+    }
+    
+    a {
+      display: block;
+      padding: 20px 5px;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: #444;
+      
+      &:hover {
+        background: #444;
+        color: #ddd;
+      }
+    }
+  }
+}
+
+.main-header {
+  margin-top: 3rem;
+  text-align: center;
+  text-transform: uppercase;
+  
+  h5 {
+    @include main-header-lines;
+  }
+  
+  h1 {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 5vmax;
+    letter-spacing: .45em;
+  }
+  
+  small {
+    display: inline-block;
+    padding: .5em;
+    font-family: serif;
+    font-weight: 300;
+    font-size: .8vmax;
+    border-radius: .3em;
+    background: #444;
+    color: #bbb;
+  }
+  
+  h5:nth-child(1) {
+    font-weight: 400;
+    font-size: 1.4rem;
+  }
+  
+  h5:nth-child(4) {
+    font-weight: 300;
+    font-size: 1rem;
+  }
+}
+
+/*===================*\
+@page classes
+@component class-modality
+/*===================*/
+.page-classes {
+  margin-top: 3em;
+  text-align: center;
+  
+  .class-modality {
+    display: block;
+    margin: .5em 0;
+    background: #444;
+    color: #ddd;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    height: 400px;
+    min-width: 100%;
+    
+    &:before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
+    
+    .class-title {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    .class-details {
+      position: absolute;
+      top: -100%;
+      left: 0%;
+      margin: 0;
+      padding: 0;
+      transition: all .9s cubic-bezier(.25, .8, .25, 1);
+      height: inherit;
+      width: 100%;
+      background: #ddd;
+      text-shadow: 1px 1px rgba(100, 100, 100, .3);
+      opacity: 0;
+      color: #444;
+      font-size: 1rem;
+      
+      p {
+        padding: 1%;
+        padding-bottom: 0;
+        text-align: left;
+      }
+    }
+    
+    &:hover {
+      .class-details {
+        top: 0%;
+        opacity: 1;
+      }
+    }
+  }
+}
+  
+/*===================*\
+@page events
+@component card-event
+/*===================*/
+.page-events {
+  margin-top: 3em;
+  .card-event {
+    margin: .5em 0;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    .size-card-thumbnail {
+      width: 100%;
+      height: auto;
+    }
+   
+    .card-title {
+      text-align: center;
+      padding: 10px 20px;
+    }
+    
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(100, 100, 100, .9);
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      transition: .5s ease;
+      
+      .card-overlay-text {
+        white-space: nowrap;
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        
+        a {
+          padding: 5px;
+          background: #5cb85c; 
+          border: 1px solid transparent;
+          border-color: #5cb85c;
+          border-radius: .25rem;
+          color: #ddd;
+          font-size: 1.5rem;
+          
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    
+    &:hover .card-overlay {
+      height: 100%;
+    }
+  }
+}
+
+/*===================*\
+@page schedule
+@component schedule-board
+/*===================*/
+.page-schedule {
+  margin-top: 3em;
+}
+.schedule-board {
+  width: $schedule-board-width;
+  font-size: 1rem;
+  
+  .day-week {
+    float: left;
+    width: calc(#{$schedule-board-width/7.2});
+    border-right: 1px solid #fff;
+    // Extra small devices (portrait phones, less than 576px)
+    @media (max-width: $breakpoint-xs) {
+      width: 100%;
+    }
+    // Small devices (landscape phones, less than 768px)
+    @media (min-width: $breakpoint-xs) and (max-width: $breakpoint-sm) {
+      width: calc(#{$schedule-board-width/3});
+    }
+    // Medium devices (tablets, less than 992px)
+    @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+      width: calc(#{$schedule-board-width/2});
+    }
+    
+    &:last-of-type {
+      border: none;
+    }
+    .day-name {      
+      display: block;
+      text-align: center;
+      background: #444;
+      color: #ddd;      
+      font-weight: 700;
+    }
+    
+    .day-schedule {
+      padding: 0;
+      list-style: none;
+      .schedule-item {
+        background: #ddd;
+        padding: .5rem 1rem;
+        border-top: 1px solid #fff;        
+      }
+    }    
+  }
+}
+
+/*===================*\
+@page book-classes
+@component book-card
+/*===================*/
+.page-book-classes {
+  margin-top: 3em;
+  .book-card {
+    margin: .5em 0;
+    position: relative;
+    width: 100%;
+    background-color: #444;
+    color: #ddd;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
+    .card-title {
+      text-align: center;
+      padding: 10px 20px;
+    }
+    
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(100, 100, 100, .9);
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      transition: .5s ease;
+      
+      .card-overlay-text {
+        white-space: nowrap;
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        
+        a {
+          padding: 5px;
+          background: #5cb85c; 
+          border: 1px solid transparent;
+          border-color: #5cb85c;
+          border-radius: .25rem;
+          color: #fff;
+          font-size: 1.5rem;
+          
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    
+    &:hover .card-overlay {
+      height: 100%;
+    }
+  }
+}
+
+/*===================*\
+@page contact
+@component contact-form
+/*===================*/
+.contact-form {
+  padding: 5em .5em;
+  background: #ddd;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  .hide-alert {
+    display: none;
+    opactity: 0;
+    transition: all 1s ease-in;
+  }
+}
